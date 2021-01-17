@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider, useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components/native';
-import Home from './screens/Home';
+import Router from './router';
 import store from './store';
 
 const AppWrapper = () => {
@@ -18,7 +18,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={currentTheme}>
-      <Home />
+      <Router theme={currentTheme} />
     </ThemeProvider>
   );
 };
