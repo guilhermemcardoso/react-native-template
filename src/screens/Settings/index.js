@@ -1,16 +1,15 @@
 import React from 'react';
-import Button from '../components/button';
-import Container from '../components/container';
-import Text from '../components/text';
+import Button from '../../components/button';
+import Container from '../../components/container';
+import Text from '../../components/text';
 import { useDispatch, useSelector } from 'react-redux';
-import { switchTheme, getCurrentTheme } from '../store/thunks/theme';
-import { darkTheme, lightTheme } from '../styles/themes';
+import { switchTheme } from '../../store/thunks/theme';
+import { darkTheme, lightTheme } from '../../styles/themes';
 
-const App = () => {
+const SettingsScreen = () => {
   const value = useSelector((state) => state.theme.current);
   const dispatch = useDispatch();
-
-  console.log('VALUE', value.mode);
+  
   return (
     <Container>
       <Button onPress={() => dispatch(switchTheme(darkTheme))} title="Dark Theme" />
@@ -20,4 +19,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default SettingsScreen;
