@@ -1,33 +1,23 @@
 import React from 'react';
-import { Button, StyleSheet, View, Text, StatusBar } from 'react-native';
+import Button from '../components/button';
+import Container from '../components/container';
+import Text from '../components/text';
 import { useDispatch, useSelector } from 'react-redux';
-import { actions } from '../store/reducers/user';
+import { switchTheme, getCurrentTheme } from '../store/thunks/theme';
+import { darkTheme, lightTheme } from '../styles/themes';
 
 const App = () => {
-  const value = useSelector((state) => state.user.value);
+  const value = useSelector((state) => state.theme.current);
   const dispatch = useDispatch();
+
+  console.log('VALUE', value.mode);
   return (
-    <View style={styles.view}>
-      <StatusBar barStyle="dark-content" />
-      <Button onPress={() => dispatch(actions.sub())} style={styles.btn} title="-" />
-      <Text style={styles.msg}>{value}</Text>
-      <Button onPress={() => dispatch(actions.sum())} style={styles.btn} title="+" />
-    </View>
+    <Container>
+      <Button onPress={() => dispatch(switchTheme(darkTheme))} title="Dark Theme" />
+      <Text>{value.mode}</Text>
+      <Button onPress={() => dispatch(switchTheme(lightTheme))} title="Light Theme" />
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  msg: {
-    marginVertical: 20,
-  },
-  view: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-  },
-  btn: {
-    padding: 15,
-  },
-});
 
 export default App;
