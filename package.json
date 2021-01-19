@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@farfarawaylabs/react-native-beautiful-notifications": "^2.0.0",
+    "@react-native-async-storage/async-storage": "^1.13.3",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-firebase/app": "^10.4.0",
     "@react-native-firebase/auth": "^10.4.1",

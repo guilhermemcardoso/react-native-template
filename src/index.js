@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components/native';
 import Router from './router';
 import store from './store';
 import { hideErrorMessage } from '~/services/auth';
+import { onboardingIsFinished } from '~/services/onboarding';
+import { getCurrentTheme } from '~/services/theme';
 import {
   Billboard,
   NOTIFICATIONS_POSITION,
@@ -21,15 +23,17 @@ const AppWrapper = () => {
 
 const App = () => {
   const { error, errorMessage } = useSelector((state) => state.auth);
+  const { done } = useSelector((state) => state.onboarding);
   const currentTheme = useSelector((state) => state.theme.current);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(onboardingIsFinished());
+    dispatch(getCurrentTheme());
     SplashScreen.hide();
   }, []);
 
   useEffect(() => {
-
     if (error) {
       showErrorNotification({
         text: errorMessage,
@@ -44,7 +48,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={currentTheme}>
-      <Router />
+      <Router hasOnboarding={!done} />
       <Billboard position={NOTIFICATIONS_POSITION.TOP} />
     </ThemeProvider>
   );
