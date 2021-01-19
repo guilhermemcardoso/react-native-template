@@ -9,6 +9,7 @@ import {
   NOTIFICATIONS_POSITION,
   showErrorNotification,
 } from '@farfarawaylabs/react-native-beautiful-notifications';
+import SplashScreen from 'react-native-splash-screen';
 
 const AppWrapper = () => {
   return (
@@ -24,7 +25,11 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('ERROR HERE', error);
+    SplashScreen.hide();
+  }, []);
+
+  useEffect(() => {
+
     if (error) {
       showErrorNotification({
         text: errorMessage,
