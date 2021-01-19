@@ -28,6 +28,10 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('DONE', done);
+  }, [done]);
+
+  useEffect(() => {
     dispatch(onboardingIsFinished());
     dispatch(getCurrentTheme());
     SplashScreen.hide();
@@ -48,7 +52,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={currentTheme}>
-      <Router hasOnboarding={!done} />
+      <Router showOnboarding={!done} />
       <Billboard position={NOTIFICATIONS_POSITION.TOP} />
     </ThemeProvider>
   );

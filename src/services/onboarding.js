@@ -1,9 +1,13 @@
 import { actions } from '~/store/onboarding';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const ONBOARDING_STORAGE_KEY = '@RNTEMPLATE_ONBOARDING';
 
 export const finishOnboarding = () => async (dispatch) => {
   try {
-    //TODO: async storage here
+    await AsyncStorage.setItem(ONBOARDING_STORAGE_KEY, 'done');
     dispatch(actions.finishOnboarding());
+    console.log('SERVICE HERE');
   } catch (e) {
     return console.error(e.message);
   }
@@ -11,8 +15,9 @@ export const finishOnboarding = () => async (dispatch) => {
 
 export const onboardingIsFinished = () => async (dispatch) => {
   try {
-    //TODO: async storage here
-    dispatch(actions.finishOnboarding());
+    const done = await AsyncStorage.getItem(ONBOARDING_STORAGE_KEY);
+    const onboardingIsDone = done === 'done';
+    if (onboardingIsDone) dispatch(actions.finishOnboarding());
   } catch (e) {
     return console.error(e.message);
   }

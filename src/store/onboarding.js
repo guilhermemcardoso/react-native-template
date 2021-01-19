@@ -7,6 +7,7 @@ const onboardingSlice = createSlice({
   },
   reducers: {
     finishOnboarding(state, action) {
+      console.log('ACTION HERE');
       state.done = true;
     },
   },
