@@ -28,10 +28,6 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('DONE', done);
-  }, [done]);
-
-  useEffect(() => {
     dispatch(onboardingIsFinished());
     dispatch(getCurrentTheme());
     SplashScreen.hide();

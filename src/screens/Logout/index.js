@@ -4,6 +4,7 @@ import Container from '~/components/container';
 import Text from '~/components/text';
 import { useDispatch, useSelector } from 'react-redux';
 import { emailSignOut } from '~/services/auth';
+import { translate } from '~/i18n';
 
 const LogoutScreen = () => {
   
@@ -15,11 +16,11 @@ const LogoutScreen = () => {
 
   return (
     <Container>
-      <Text title>Logout</Text>
+      <Text title>{translate('logoutScreen.title')}</Text>
       {userEmail.length !== 0 && (
-          <Button onPress={handleLogout} title="Logout" />
+          <Button onPress={handleLogout} title={translate('logoutScreen.logoutButton')} />
       )}
-      {userEmail.length === 0 && (<Text>There is no user logged in at this moment.</Text>)}
+      {userEmail.length === 0 && (<Text>{translate('logoutScreen.notLoggedMessage')}</Text>)}
     </Container>
   );
 };
