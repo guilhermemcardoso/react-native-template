@@ -11,7 +11,7 @@ export const Container = styled.View`
 export const Input = styled.TextInput`
   background: ${(props) => props.theme.PRIMARY_BACKGROUND_COLOR};
   align-self: stretch;
-  padding: ${dimens.padding}px;
+  padding: ${dimens.padding}px ${({password}) => (password ? 45 : dimens.padding)}px ${dimens.padding}px ${dimens.padding}px;
   border-radius: ${dimens.border_radius}px;
   font-size: ${dimens.general_font_size}px;
   text-align: center;
@@ -19,4 +19,11 @@ export const Input = styled.TextInput`
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
   elevation: 2;
   border: ${(props) => props.theme.PRIMARY_BUTTON_COLOR};
+`;
+
+export const ShowPassword = styled.TouchableOpacity`
+  position: absolute;
+  right: ${dimens.padding}px;
+  z-index: 1;
+  elevation: 2;
 `;

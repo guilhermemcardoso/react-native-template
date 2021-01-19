@@ -41,7 +41,7 @@ const LoginScreen = () => {
             onChangeText={setEmail}
             placeholder={translate('placeholder.email')}
           />
-          <TextInput autoCapitalize="none" value={password} onChangeText={setPassword} placeholder={translate('placeholder.password')} />
+          <TextInput password autoCapitalize="none" value={password} onChangeText={setPassword} placeholder={translate('placeholder.password')} />
           <Button onPress={handleLogin} title={translate('loginScreen.loginButton')} />
         </>
       )}
