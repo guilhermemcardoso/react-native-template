@@ -1,5 +1,6 @@
 import auth from '@react-native-firebase/auth';
 import { actions } from '~/store/auth';
+import { translate } from '~/i18n';
 
 export const showErrorMessage = (errorMessage) => async (dispatch) => {
   dispatch(actions.showErrorMessage(errorMessage));
@@ -26,13 +27,13 @@ export const emailSignIn = (email, password) => async (dispatch) => {
     .catch((error) => {
       switch (error.code) {
         case 'auth/email-already-in-use':
-          dispatch(actions.SignInFail('That email address is already in use!'));
+          dispatch(actions.SignInFail(translate('error.emailInUse')));
           break;
         case 'auth/invalid-email':
-          dispatch(actions.SignInFail('That email address is invalid!'));
+          dispatch(actions.SignInFail(translate('error.invalidEmail')));
           break;
         default:
-          dispatch(actions.SignInFail('An unexpected error occured, please try again later.'));
+          dispatch(actions.SignInFail(translate('error.unexpected')));
           break;
       }
     });
@@ -55,13 +56,13 @@ export const emailSignUp = (email, password) => async (dispatch) => {
     .catch((error) => {
       switch (error.code) {
         case 'auth/email-already-in-use':
-          dispatch(actions.SignUpFail('That email address is already in use!'));
+          dispatch(actions.SignUpFail(translate('error.emailInUse')));
           break;
         case 'auth/invalid-email':
-          dispatch(actions.SignUpFail('That email address is invalid!'));
+          dispatch(actions.SignUpFail(translate('error.invalidEmail')));
           break;
         default:
-          dispatch(actions.SignUpFail('An unexpected error occured, please try again later.'));
+          dispatch(actions.SignUpFail(translate('error.unexpected')));
           break;
       }
     });
@@ -80,6 +81,6 @@ export const emailSignOut = () => async (dispatch) => {
       dispatch(actions.SignOutSuccess());
     })
     .catch((error) => {
-      dispatch(actions.SignUpFail('An unexpected error occured, please try again later.'));
+      dispatch(actions.SignUpFail(translate('error.unexpected')));
     });
 };

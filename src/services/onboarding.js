@@ -7,7 +7,6 @@ export const finishOnboarding = () => async (dispatch) => {
   try {
     await AsyncStorage.setItem(ONBOARDING_STORAGE_KEY, 'done');
     dispatch(actions.finishOnboarding());
-    console.log('SERVICE HERE');
   } catch (e) {
     return console.error(e.message);
   }

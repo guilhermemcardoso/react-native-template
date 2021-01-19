@@ -6,6 +6,7 @@ import TextInput from '~/components/textInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { emailSignUp, showErrorMessage } from '~/services/auth';
 import { validateEmail, validatePassword, confirmPassword } from '~/utils/validation';
+import { translate } from '~/i18n';
 
 const RegisterScreen = () => {
   const [email, setEmail] = useState('');
@@ -16,17 +17,17 @@ const RegisterScreen = () => {
 
   const handleRegister = async () => {
     if (!validateEmail(email)) {
-      dispatch(showErrorMessage('Email is invalid'));
+      dispatch(showErrorMessage(translate('error.invalidEmail')));
       return;
     }
 
     if (!validatePassword(password)) {
-      dispatch(showErrorMessage('Password is invalid'));
+      dispatch(showErrorMessage(translate('error.invalidPassword')));
       return;
     }
 
     if (!confirmPassword(password, passwordConfirmation)) {
-      dispatch(showErrorMessage('Password and confirmation are different'));
+      dispatch(showErrorMessage(translate('error.passwordConfirmation')));
       return;
     }
 
@@ -35,7 +36,7 @@ const RegisterScreen = () => {
 
   return (
     <Container>
-      <Text title>Register</Text>
+      <Text title>{translate('registerScreen.title')}</Text>
       {userEmail.length === 0 && (
         <>
           <TextInput
@@ -44,19 +45,19 @@ const RegisterScreen = () => {
             keyboardType="email-address"
             value={email}
             onChangeText={setEmail}
-            placeholder="Email"
+            placeholder={translate('placeholder.email')}
           />
-          <TextInput autoCapitalize="none" value={password} onChangeText={setPassword} placeholder="Password" />
+          <TextInput autoCapitalize="none" value={password} onChangeText={setPassword} placeholder={translate('placeholder.password')} />
           <TextInput
             autoCapitalize="none"
             value={passwordConfirmation}
             onChangeText={setPasswordConfirmation}
-            placeholder="Confirm Password"
+            placeholder={translate('placeholder.passwordConfirmation')}
           />
-          <Button onPress={handleRegister} title="Register" />
+          <Button onPress={handleRegister} title={translate('registerScreen.registerButton')} />
         </>
       )}
-      {userEmail.length !== 0 && <Text>{userEmail}, you are already logged in.</Text>}
+      {userEmail.length !== 0 && <Text>{userEmail}, {translate('registerScreen.loggedMessage')}</Text>}
     </Container>
   );
 };

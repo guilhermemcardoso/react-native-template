@@ -6,7 +6,9 @@ import { withTheme, ThemeContext } from 'styled-components/native';
 import { switchTheme } from './services/theme';
 import { useDispatch, useSelector } from 'react-redux';
 import SwitchTheme from './components/switchTheme';
+import Text from './components/text';
 import { darkTheme, lightTheme } from './styles/themes';
+import { translate } from '~/i18n';
 
 import Icon from './components/icon';
 
@@ -34,6 +36,19 @@ const Main = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        tabBarLabel: ({ focused, color, size }) => {
+          if (route.name === 'Login') {
+            return <Text style={{fontSize: 10}}>{translate('tab.login')}</Text>;
+          }
+
+          if (route.name === 'Register') {
+            return <Text style={{fontSize: 10}}>{translate('tab.register')}</Text>;
+          }
+
+          if (route.name === 'Logout') {
+            return <Text style={{fontSize: 10}}>{translate('tab.logout')}</Text>;
+          }
+        },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === 'Login') {
@@ -64,7 +79,7 @@ const Main = () => {
   );
 };
 
-const Router = ({showOnboarding}) => {
+const Router = ({ showOnboarding }) => {
   const currentTheme = useSelector((state) => state.theme.current);
   const dispatch = useDispatch();
 
@@ -76,33 +91,33 @@ const Router = ({showOnboarding}) => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName={showOnboarding ? 'Onboarding' : 'Main'}>
         {showOnboarding ? (
-        <>
+          <>
+            <Stack.Screen
+              name="Onboarding"
+              component={Onboarding}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </>
+        ) : (
           <Stack.Screen
-            name="Onboarding"
-            component={Onboarding}
+            name="Main"
+            component={Main}
             options={{
-              headerShown: false,
+              title: '',
+              headerStyle: {
+                backgroundColor: currentTheme.HEADER_BACKGROUND_COLOR,
+              },
+              headerRight: () => (
+                <SwitchTheme
+                  labels={[translate('theme.light'), translate('theme.dark')]}
+                  value={currentTheme.mode !== 'light'}
+                  setValue={handleSwitchTheme}
+                />
+              ),
             }}
           />
-        </>
-        ) : (
-        <Stack.Screen
-          name="Main"
-          component={Main}
-          options={{
-            title: '',
-            headerStyle: {
-              backgroundColor: currentTheme.HEADER_BACKGROUND_COLOR,
-            },
-            headerRight: () => (
-              <SwitchTheme
-                labels={['Light', 'Dark']}
-                value={currentTheme.mode !== 'light'}
-                setValue={handleSwitchTheme}
-              />
-            ),
-          }}
-        />
         )}
       </Stack.Navigator>
     </NavigationContainer>
