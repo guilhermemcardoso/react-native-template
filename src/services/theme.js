@@ -1,4 +1,4 @@
-import { actions } from '../reducers/theme';
+import { actions } from '~/store/theme';
 
 export const switchTheme = (theme) => async (dispatch) => {
   try {

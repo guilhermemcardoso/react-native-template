@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import * as dimens from '../../styles/dimens';
+import * as dimens from '~/styles/dimens';
 
 export const StyledText = styled.Text`
   font-size: ${({ title }) => (title ? dimens.title_font_size : dimens.general_font_size)}px;
