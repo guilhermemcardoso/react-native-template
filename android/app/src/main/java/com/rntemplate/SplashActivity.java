@@ -1,4 +1,4 @@
-package com.rntemplate; // Deve ser o nome do seu pacote aqui !!!
+package com.rntemplate;
 
 import android.content.Intent;
 import android.os.Bundle;
