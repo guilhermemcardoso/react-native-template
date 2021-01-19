@@ -6,7 +6,7 @@ import { ThemeContext } from 'styled-components/native';
 
 const StyledIcon = ({ name, size, color, ...rest }) => {
   const theme = useContext(ThemeContext);
-  return <Icon name={Platform.OS === 'ios' ? `ios-${name}` : `md-${name}`} size={size} color={color.length > 0 ? color : theme.PRIMARY_TEXT_COLOR} />;
+  return <Icon name={Platform.OS === 'ios' ? `ios-${name}` : `md-${name}`} size={size} color={color.length > 0 ? color : theme.PRIMARY_BUTTON_COLOR} />;
 };
 
 StyledIcon.propTypes = {
@@ -16,6 +16,7 @@ StyledIcon.propTypes = {
 };
 
 StyledIcon.defaultProps = {
+  color: '',
   size: 16,
 };
 
