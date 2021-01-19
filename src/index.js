@@ -11,6 +11,7 @@ import {
   NOTIFICATIONS_POSITION,
   showErrorNotification,
 } from '@farfarawaylabs/react-native-beautiful-notifications';
+import SplashScreen from 'react-native-splash-screen';
 
 const AppWrapper = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
   useEffect(() => {
     dispatch(onboardingIsFinished());
     dispatch(getCurrentTheme());
+    SplashScreen.hide();
   }, []);
 
   useEffect(() => {
