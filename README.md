@@ -1,17 +1,23 @@
 # react-native-template
 
+[![Generic badge](https://img.shields.io/badge/license-MIT-green.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/version-0.0.1-1abc9c.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/react%20native-0.63.4-blue.svg)](https://shields.io/)
+
 ### Table of Contents
 1. [Overview](#overview)
-2. [How to use it](#how-to-use-it)
+2. [Requirements](#requirements)
+3. [How to use it](#how-to-use-it)
 	- [Firebase Configuration](#firebase-configuration)
-3. [Firebase Auth](#firebase-auth)
-4. [Tab Navigation](#tab-navigation)
-5. [Redux Toolkit](#redux-toolkit)
-6. [Theme Support](#theme-support)
-7. [Intro Screen](#intro-screen)
-8. [Error Notifications](#error-notifications)
-9. [Splash Screen](#splash-screen)
-10. [Async Storage](#async-storage) 
+4. [Firebase Auth](#firebase-auth)
+5. [Tab Navigation](#tab-navigation)
+6. [Redux Toolkit](#redux-toolkit)
+7. [Theme Support](#theme-support)
+8. [Intro Screen](#intro-screen)
+9. [Error Notifications](#error-notifications)
+10. [Splash Screen](#splash-screen)
+11. [Async Storage](#async-storage) 
+12. [License](#license)
 
 ## Overview
 
@@ -37,6 +43,10 @@ The project is structured by a simple folder tree:
 > All of the other files are created by `npx react-native init
 > projectName`
 
+## Requirements
+
+To run this project you will need a configured React Native environment. You can follow [these steps from the official React Native documentation](https://reactnative.dev/docs/environment-setup) to do it.
+
 ## How to use it
 
 To use this project on your react native applications, download it to your computer using the following command:
@@ -48,13 +58,26 @@ To use this project on your react native applications, download it to your compu
 After downloading the project on your computer run the following commands to install its dependencies:
 
     // if you use yarn:
-    yarn
+    cd react-native-template && yarn
     // if you use npm:
-    npm install
+    cd react-native-template && npm install
 
-And to install the ios application dependencies:
+> If you want to install yarn, you can take a look
+> [here](https://classic.yarnpkg.com/en/docs/install/#debian-stable).
+
+And to install the ios application dependencies you will need the Cocoapods installed on your machine. To install it, you can follow [this](https://cocoapods.org/). If you already have it installed, just run the following command:
 
     cd ios && pod install && cd ..
+
+After install all the dependencies, you can run the project on your device or emulator running both of these steps at the same time (in different terminals):
+
+- Start Metro:
+`npx react-native start //if you use npm`
+`yarn react-native start //if you use yarn`
+
+- Start the application:
+`npx react-native run-android //if you use npm`
+`yarn android //if you use yarn`
 
 ### Firebase configuration:
 
@@ -103,3 +126,7 @@ The project already has a splash screen configured on it. But to change it accor
 ## Async Storage
 
 Async storage is already configured on the project so you can store some informations on the device and read it anytime. For example, you can save on it if the user already saw the onboarding/intro screens and when the user opens the app again, it will redirects the user directly to the next screen. If you don't know how to use this library, you can learn [here](https://react-native-async-storage.github.io/async-storage/docs/install/).
+
+## License
+
+[MIT](https://github.com/guilhermemcardoso/react-native-template/blob/main/LICENSE)
