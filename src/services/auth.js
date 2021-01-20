@@ -6,7 +6,7 @@ export const showErrorMessage = (errorMessage) => async (dispatch) => {
   dispatch(actions.showErrorMessage(errorMessage));
 }
 
-export const hideErrorMessage = (errorMessage) => async (dispatch) => {
+export const hideErrorMessage = () => async (dispatch) => {
   dispatch(actions.hideErrorMessage());
 }
 
